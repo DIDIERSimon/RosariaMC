@@ -17,6 +17,7 @@ class AccountDAO{
             $bdd = Connexion::executerRequete($sql, array($name, $email, $password));
             header("Location: index.php?action=connection");
         }
+        throw new Exception("Création du compte impossible.<br>2 possibilitées :<br>Vous ne vous êtes jamais connecté au serveur ou les informations que vous avez renseigné sont incorect.<br> <a href='index.php?action=registeration'>retour a l'enregistrement</a>");
     }
 
     public static function connexion($email, $password)

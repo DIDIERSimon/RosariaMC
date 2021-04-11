@@ -25,11 +25,7 @@
             <input type="password" name="accPassword" placeholder="Votre mot de passe" required><br>
             <input type="submit" name="connexion">
         </form>
+        <a href="index.php?action=registeration">Pas encore de compte ? créez-en un !</a>
     </div>
-    <?php
-        if(isset($error)){
-            echo $error;
-        }
-    ?>
 </body>
 </html>

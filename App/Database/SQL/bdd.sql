@@ -16,9 +16,10 @@ create table IF NOT EXISTS account(
     `accountID` INT(11) AUTO_INCREMENT not null,
     `accountName` VARCHAR(255) COLLATE utf8_unicode_ci UNIQUE not null,
     `accountEmail` VARCHAR(255) COLLATE utf8_unicode_ci UNIQUE not null,
+    `accountMailKey` VARCHAR(255) COLLATE utf8_unicode_ci not null,
+    `accountValidated` INT(11) DEFAULT 0,
     `accountPassword` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `accountPB` INT(11) DEFAULT 0,
-    foreign KEY (`AccountName`) REFERENCES players(`PlayerName`),
     primary key (`accountID`)
 );
 
