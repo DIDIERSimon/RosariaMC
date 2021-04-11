@@ -7,10 +7,29 @@
     {
         if(isset($_GET['action']))
         {
+            //renvois un formulaire d'enregistrement
             if($_GET['action'] == 'registeration')
             {
                 registerationPage();
             }
+            //renvoi un formulaire d'authentification
+            if($_GET['action'] == 'connection')
+            {
+                connection();
+            }
+            if($_GET['action'] == 'profile')
+            {
+                
+            }
+        }
+        else if(isset($_GET['profile']) AND $_GET['profile']>0)
+        {
+            $getID = intval($_GET['profile']);
+            profile();
+        }
+        else if (isset($_GET['disconnection']))
+        {
+            disconnect();
         }
         else
             accueil();

@@ -8,21 +8,35 @@ function accueil()
     require 'View/Accueil.php';
 }
 
+//region d'enregistrement
 function registerationPage()
 {
-    require 'View/registeration/Registeration.php';
+    require 'View/Registeration.php';
 }
-function registerSuccess()
-{
-    require 'View/registeration/registerSuccess.php';
-}
-function registerFailled()
-{
-    require 'View/registeration/registerFailled.php';
-}
-
 function registeringAccount($name, $email, $password)
 {
     AccountDAO::registerAccount($name, $email, $password);
 }
+//fin region d'enregistrement
 
+//region de connexion
+function connection()
+{
+    require 'View/connection.php';
+}
+function connRequest($email, $password)
+{
+    AccountDAO::connexion($email, $password);
+}
+//fin region connexion
+
+//region $_SESSION
+function profile()
+{
+    require 'View/profil.php';
+}
+
+function disconnect()
+{
+    require 'View/deconnexion.php';
+}

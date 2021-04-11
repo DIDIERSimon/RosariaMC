@@ -5,19 +5,23 @@ if(isset($_POST['submit']))
     $email = htmlspecialchars(trim($_POST['accEmail']));
     $password = htmlspecialchars(trim($_POST['accPassword']));
     $c_password = htmlspecialchars(trim($_POST['c_accPassword']));
-    if(strlen($password) >= 6)
+    if(filter_var($email, FILTER_VALIDATE_EMAIL))
     {
-        if($password == $c_password)
+        if(strlen($password) >= 6)
         {
-            $password = sha1($password);
-            registeringAccount($pseudo, $email, $password);
-            registerSuccess();
+            if($password == $c_password)
+            {
+                $password = sha1($password);
+                registeringAccount($pseudo, $email, $password);
+            }
+            else
+                $erreur = 'Vos deux mots de passe ne sont pas identiques';
         }
         else
-            $erreur = 'Vos deux mots de passe ne sont pas identiques';
+        $erreur = 'Votre mot de passe ne comporte pas assez de caractère.';
     }
     else
-       $erreur = 'Votre mot de passe ne comporte pas assez de caractère.';
+        $erreur = "Veuillez entrer une adresse mail valide !";
 }
 ?>
 
