@@ -1,10 +1,19 @@
 <?php
 
     require('App/Controller/Controller.php');
+    static $erreur;
 
     try
     {
-        accueil();
+        if(isset($_GET['action']))
+        {
+            if($_GET['action'] == 'registeration')
+            {
+                registerationPage();
+            }
+        }
+        else
+            accueil();
     }
     catch (Exception $e)
     {
