@@ -18,10 +18,11 @@ create table IF NOT EXISTS account(
     `accountEmail` VARCHAR(255) COLLATE utf8_unicode_ci UNIQUE not null,
     `accountPassword` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `accountPB` INT(11) DEFAULT 0,
+    foreign KEY (`AccountName`) REFERENCES players(`PlayerName`),
     primary key (`accountID`)
 );
 
 
 /* Insertion de données */
-INSERT INTO players (PlayerName, PlayerUUID, PlayerEmail) VALUES ('Ekyazed', 'unUUID', 'simondidier.pro@gmail.com');
-INSERT INTO players (PlayerName, PlayerUUID, PlayerEmail) VALUES ('NiKla0Ss', 'unUUID2', 'Nikla0Ss@gmail.com');
+INSERT INTO players (PlayerName, PlayerUUID) VALUES ('Ekyazed', 'unUUID');
+INSERT INTO players (PlayerName, PlayerUUID) VALUES ('NiKla0Ss', 'unUUID2');

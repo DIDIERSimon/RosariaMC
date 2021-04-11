@@ -5,13 +5,13 @@ require_once 'App/Database/AccountDAO.php';
 
 function accueil()
 {
-    require 'View/Accueil.php';
+    require 'View/Main/Accueil.php';
 }
 
 //region d'enregistrement
 function registerationPage()
 {
-    require 'View/Registeration.php';
+    require 'View/Authentification/Registeration.php';
 }
 function registeringAccount($name, $email, $password)
 {
@@ -22,7 +22,7 @@ function registeringAccount($name, $email, $password)
 //region de connexion
 function connection()
 {
-    require 'View/connection.php';
+    require 'View/Authentification/connection.php';
 }
 function connRequest($email, $password)
 {
@@ -33,10 +33,10 @@ function connRequest($email, $password)
 //region $_SESSION
 function profile()
 {
-    require 'View/profil.php';
+    require 'View/Main/profil.php';
 }
 
 function disconnect()
 {
-    require 'View/deconnexion.php';
+    require 'View/Authentification/deconnexion.php';
 }

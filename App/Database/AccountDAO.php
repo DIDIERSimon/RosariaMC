@@ -6,6 +6,8 @@ static $status;
 
 class AccountDAO{
 
+    public static $error;
+
     public static function registerAccount($name, $email, $password){
         $sql = "SELECT accountName FROM account where accountName = ?";
         $bdd = Connexion::executerRequete($sql, array($name));
@@ -28,12 +30,10 @@ class AccountDAO{
             $_SESSION['id'] =  $info['accountID'];
             $_SESSION['name'] =  $info['accountName'];
             $_SESSION['email'] =  $info['accountEmail'];
-            header("Location: index.php?profile=".$_SESSION['id']);
+            header("Location: index.php");
         }
         else
-            $error = 'L\'une ou plusieurs des informations fournis sont incorrect !';
-        
-        return $error;
+            throw new Exception("Connexion impossible, compte inexistant ou mauvaises informations. <a href='index.php?action=connection'>Retour a la connexion</a>");
     }
-    
+
 }
