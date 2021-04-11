@@ -9,7 +9,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
 body{
-    background: url('/Resources/img/img.png');
+    background: url('/Resources/img/img.png') fixed;
+    background-size: cover;
 }
 
 .sidebar {

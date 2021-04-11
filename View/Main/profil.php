@@ -10,26 +10,26 @@ session_start();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rosaria | <?php echo $accInfo['accountName'] ?></title>
-</head>
-<body>
-    <div align='center'>
-        <h2>Profil de <?php echo $accInfo['accountName'] ?></h2>
-        <?php
-            if(isset($_SESSION['id']) AND $accInfo['accountID'] == $_SESSION['id'])
-            {?>
-
-                <a href="#">Editer mon profil</a><br>
-                <a href="index.php?disconnection">se déconnecter</a>
-
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rosaria | <?php echo $accInfo['accountName'] ?></title>
+    </head>
+    <body>
+        <div align='center'>
+            <h2>Profil de <?php echo $accInfo['accountName'] ?></h2>
             <?php
-             }
-        ?>
-    </div>
-</body>
+                if(isset($_SESSION['id']) AND $accInfo['accountID'] == $_SESSION['id'])
+                {?>
+
+                    <a href="#">Editer mon profil</a><br>
+                    <a href="index.php?disconnection">se déconnecter</a>
+
+                <?php
+                }
+            ?>
+        </div>
+    </body>
 </html>

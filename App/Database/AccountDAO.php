@@ -15,9 +15,9 @@ class AccountDAO{
         {
             $sql = "INSERT INTO account(accountName, accountEmail, accountPassword) VALUES (?, ?, ?)";
             $bdd = Connexion::executerRequete($sql, array($name, $email, $password));
-            header("Location: index.php?action=connection");
+            header("Location: index.php?action=connexion");
         }
-        throw new Exception("Création du compte impossible.<br>2 possibilitées :<br>Vous ne vous êtes jamais connecté au serveur ou les informations que vous avez renseigné sont incorect.<br> <a href='index.php?action=registeration'>retour a l'enregistrement</a>");
+        
     }
 
     public static function connexion($email, $password)
@@ -36,5 +36,7 @@ class AccountDAO{
         else
             throw new Exception("Connexion impossible, compte inexistant ou mauvaises informations. <a href='index.php?action=connection'>Retour a la connexion</a>");
     }
+
+    
 
 }

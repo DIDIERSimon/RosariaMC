@@ -8,12 +8,12 @@
         if(isset($_GET['action']))
         {
             //renvois un formulaire d'enregistrement
-            if($_GET['action'] == 'registeration')
+            if($_GET['action'] == 'enregistrement')
             {
                 registerationPage();
             }
             //renvoi un formulaire d'authentification
-            if($_GET['action'] == 'connection')
+            if($_GET['action'] == 'connexion')
             {
                 connection();
             }

@@ -5,47 +5,69 @@ if(isset($_POST['submit']))
     $email = htmlspecialchars(trim($_POST['accEmail']));
     $password = htmlspecialchars(trim($_POST['accPassword']));
     $c_password = htmlspecialchars(trim($_POST['c_accPassword']));
-    if(filter_var($email, FILTER_VALIDATE_EMAIL))
+    if(!empty($pseudo) && !empty($email) && !empty($password) && !empty($c_password))
     {
-        if(strlen($password) >= 6)
+        if(filter_var($email, FILTER_VALIDATE_EMAIL))
         {
-            if($password == $c_password)
+            if(strlen($password) >= 6)
             {
-                $password = sha1($password);
-                registeringAccount($pseudo, $email, $password);
+                if($password == $c_password)
+                {
+                    $password = sha1($password);
+                    registeringAccount($pseudo, $email, $password);
+                }
+                else
+                    $erreur = 'Vos deux mots de passe ne sont pas identiques';
             }
             else
-                $erreur = 'Vos deux mots de passe ne sont pas identiques';
+            $erreur = 'Votre mot de passe ne comporte pas assez de caractère.';
         }
         else
-        $erreur = 'Votre mot de passe ne comporte pas assez de caractère.';
+            $erreur = "Veuillez entrer une adresse mail valide !";
     }
     else
-        $erreur = "Veuillez entrer une adresse mail valide !";
+        $erreur = "Veuillez renseigner tout les champs !";
 }
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/Resources/css/login.css">
         <title>RosariaMC | s'enregistrer</title>
     </head>
 
     <body>
-    <div style="position: absolute;left:45%;top:10%">
-            <form method="POST">
-                <input type="text" name="accName" placeholder="Votre Pseudo Minecraft" required><br>
-                <input type="email" name="accEmail" placeholder="Votre Adresse Email" required><br>
-                <input type="password" name="accPassword" placeholder="Votre mot de passe" required><br>
-                <input type="password" name="c_accPassword" placeholder="Réécrivez votre mot de passe" required><br>
-                <input type="submit" name="submit" value="S'enregistrer"><br>
-            </form>
-            <?php
-            if(isset($erreur)){
-                echo $erreur;
-            }
+        <div class="login-wrapper">
+            <form method="POST" class="form">
+                <h2>S'enregistrer</h2>
+                <div class="input-group">
+                    <input type="text" name="accName" >
+                    <label for="accName">Pseudo In-Game</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="accEmail" >
+                    <label for="accEmail">Adresse Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="accPassword" >
+                    <label for="accPassword">Mot de passe</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="c_accPassword" >
+                    <label for="c_accPassword">Confirmez mot de passe</label>
+                </div>
+                <input type="submit" value="Connexion" name="submit" class="submit-btn">
+                <a href="index.php?action=connexion" class="forgot-pw">Déjà un compte ?</a><br><br>
+                <?php
+                if(isset($erreur)){
+                    echo "<p style='color: red;'>".$erreur."</p>";
+                }
             ?>
-    </div>
+            </form>
+        </div>
     </body>
 </html>
-
