@@ -31,6 +31,9 @@ elseif($url[0]=="auth")
 //gestion de la partie Profil
 elseif($url[0]=="profile"){
     if($url[1]==$_SESSION['name']){
-        profile();
+        profile($_SESSION['name']);
+    }
+    elseif(!empty($url[1])){
+        profile($url[1]);
     }
 }

@@ -31,8 +31,11 @@ function connRequest($email, $password)
 //fin region connexion
 
 //region $_SESSION
-function profile()
+function profile($pID)
 {
+    $sql = "SELECT accountName from account where accountName= ?";
+    $bdd = Connexion::executerRequete($sql, array($pID));
+    $infoUser = $bdd->fetch();
     require 'View/Main/profil.php';
 }
 
