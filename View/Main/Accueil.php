@@ -21,11 +21,6 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   </head>
   <body>
-    <input type="checkbox" id="check">
-    <label for="check">
-      <i class="fas fa-bars" id="btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
-    </label>
     <div class="sidebar">
     <header>RosariaMC</header>
       <ul>
@@ -38,6 +33,7 @@ session_start();
         <?php 
           if(isset($_SESSION['id']) AND $_SESSION['id'] == $accInfo['accountID']){
             ?>
+            <li><a href="#"><i class="fas fa-columns"></i>Panel Admin</a></li>
             <li><a href="#"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
             <li><a href="index.php?disconnection"><i class="fas fa-user"></i>Déconnexion</a></li>
             <?php

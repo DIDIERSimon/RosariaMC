@@ -13,8 +13,8 @@ class AccountDAO{
         $bdd = Connexion::executerRequete($sql, array($name));
         if($bdd->rowCount() < 1)
         {
-            $sql = "INSERT INTO account(accountName, accountEmail, accountPassword) VALUES (?, ?, ?)";
-            $bdd = Connexion::executerRequete($sql, array($name, $email, $password));
+            $sql = "INSERT INTO account(accountName, accountEmail, accountPassword, accountCreateAt) VALUES (?, ?, ?, ?)";
+            $bdd = Connexion::executerRequete($sql, array($name, $email, $password, date("d-m-Y H:i:s")));
             header("Location: index.php?action=connexion");
         }
         
