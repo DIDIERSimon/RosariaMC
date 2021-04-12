@@ -14,14 +14,26 @@
                 if(isset($_SESSION['name']) && $infoUser['accountName'] == $_SESSION['name'])
                 {?>
 
+                    <ul>
+                        <li><h4>Date d'inscription : <?php echo $infoUser['accountCreateAt'] ?></h4></li>
+                        <li><h4>Rôle : <?php echo $infoUser['RoleLibelle'] ?></h4></li>
+                        <li><h4>Point(s) Boutique : <?php echo $infoUser['accountPB'] ?></h4></li>
+                    </ul>
+                    <br><br><br><br>
                     <a href="#">Editer mon profil</a><br>
                     <a href="/auth/deconnexion">se déconnecter</a>
 
                 <?php
                 }
                 elseif(isset($_SESSION['name']) && $infoUser['accountName'] != $_SESSION['name'])
-                {
+                {?> 
 
+                    <ul>
+                        <li><h4>Date d'inscription : <?php echo $infoUser['accountCreateAt'] ?></h4></li>
+                        <li><h4>Role : <?php echo $infoUser['accountRole'] ?></h4></li>
+                    </ul>
+
+                <?php
                 }
             ?>
         </div>

@@ -60,8 +60,8 @@ if(isset($_POST['submit']))
                     <input type="password" name="c_accPassword" >
                     <label for="c_accPassword">Confirmez mot de passe</label>
                 </div>
-                <input type="submit" value="Connexion" name="submit" class="submit-btn">
-                <a href="index.php?action=connexion" class="forgot-pw">Déjà un compte ?</a><br><br>
+                <input type="submit" value="Inscription" name="submit" class="submit-btn">
+                <a href="/auth/connexion" class="forgot-pw">Déjà un compte ?</a><br><br>
                 <?php
                 if(isset($erreur)){
                     echo "<p style='color: red;'>".$erreur."</p>";

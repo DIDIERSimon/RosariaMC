@@ -3,7 +3,11 @@
     if(isset($_SESSION['id']))
     {
         $id = $_SESSION['id'];
-        $sql = "SELECT accountID, accountName, accountEmail FROM account WHERE accountID = ?";
+        $sql = "SELECT a.accountID, a.accountName, a.accountEmail, a.accountRole, a.accountCreateAt, a.accountPB, r.RoleLibelle
+                from account a
+                join roles r
+                on a.accountRole = r.RoleID
+                where accountID = ?";
         $bdd = Connexion::executerRequete($sql, array($id));
         $accInfo = $bdd->fetch();
     }
@@ -31,11 +35,21 @@
         <li><a href="#"><i class="fas fa-users"></i>Equipe</a></li>
         <?php 
           if(isset($_SESSION['id']) AND $_SESSION['id'] == $accInfo['accountID']){
-            ?>
-            <li><a href="#"><i class="fas fa-columns"></i>Panel Admin</a></li>
-            <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
-            <li><a href="/auth/deconnexion"><i class="fas fa-user"></i>Déconnexion</a></li>
-            <?php
+            if($accInfo['accountRole'] < 6){
+              ?>
+                            
+                <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
+                <li><a href="/auth/deconnexion"><i class="fas fa-user"></i>Déconnexion</a></li>
+              <?php
+            }
+            else{
+              ?>
+              <li><a href="#"><i class="fas fa-columns"></i>Panel Admin</a></li>
+              <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
+              <li><a href="/auth/deconnexion"><i class="fas fa-user"></i>Déconnexion</a></li>
+              <?php
+            }
+        
           }
           else{
             ?>

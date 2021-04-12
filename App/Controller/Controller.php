@@ -33,7 +33,11 @@ function connRequest($email, $password)
 //region $_SESSION
 function profile($pID)
 {
-    $sql = "SELECT accountName from account where accountName= ?";
+    $sql = "SELECT a.accountID, a.accountName, a.accountEmail, a.accountRole, a.accountCreateAt, a.accountPB, r.RoleLibelle
+        from account a
+        join roles r
+        on a.accountRole = r.RoleID
+        where accountName = ?";
     $bdd = Connexion::executerRequete($sql, array($pID));
     $infoUser = $bdd->fetch();
     require 'View/Main/profil.php';
