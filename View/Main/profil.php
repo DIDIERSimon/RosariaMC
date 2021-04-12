@@ -1,11 +1,13 @@
 <?php
-session_start();
-    if(isset($_GET['profile']) AND $_GET['profile'] > 0)
+
+    if(isset($_SESSION['name']) AND isset($_SESSION['id']))
     {
-        $getID = intval($_GET['profile']);
-        $sql = "SELECT accountID, accountName, accountEmail FROM account WHERE accountID = ?";
-        $bdd = Connexion::executerRequete($sql, array($getID));
-        $accInfo = $bdd->fetch();
+
+        $name = $_SESSION['name'];
+        $sql = "SELECT accountID, accountName, accountEmail FROM account Where accountName = ?";
+        $bdd = Connexion::executerRequete($sql, array($name));
+        $accinfo = $bdd->fetch();
+
     }
 
 ?>
@@ -15,19 +17,23 @@ session_start();
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rosaria | <?php echo $accInfo['accountName'] ?></title>
+        <title>RosariaMC | <?php echo $_SESSION['name'] ?></title>
     </head>
     <body>
         <div align='center'>
-            <h2>Profil de <?php echo $accInfo['accountName'] ?></h2>
+            <h2>Profil de <?php echo $_SESSION['name']  ?></h2>
             <?php
-                if(isset($_SESSION['id']) AND $accInfo['accountID'] == $_SESSION['id'])
+                if(isset($_SESSION['id']) && $accinfo['accountID'] == $_SESSION['id'])
                 {?>
 
                     <a href="#">Editer mon profil</a><br>
-                    <a href="index.php?disconnection">se déconnecter</a>
+                    <a href="/auth/deconnexion">se déconnecter</a>
 
                 <?php
+                }
+                elseif(isset($_SESSION['id']) && $accinfo['accountID'] != $_SESSION['id'])
+                {
+
                 }
             ?>
         </div>

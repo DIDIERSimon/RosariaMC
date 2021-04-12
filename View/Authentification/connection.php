@@ -38,7 +38,7 @@
                 <label for="accPassword">Mot de passe</label>
             </div>
             <input type="submit" value="Connexion" name="connexion" class="submit-btn">
-            <a href="index.php?action=enregistrement" class="forgot-pw">Pas de compte ?</a>
+            <a href="enregistrement" class="forgot-pw">Pas de compte ?</a>
             <?php
                 if(isset($erreur)){
                     echo "<p style='color: red;'>".$erreur."</p>";

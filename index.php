@@ -1,40 +1,36 @@
 <?php
+session_start();
+    require 'App/Controller/Controller.php';
 
-    require('App/Controller/Controller.php');
-    static $erreur;
+$url = '';
+if(isset($_GET['url'])){
+    $url = explode('/', $_GET['url']);
+}
 
-    try
+if($url == "")
+{
+    accueil();
+}
+
+//gestion de la partie Authentification
+elseif($url[0]=="auth")
+{
+    if($url[1]=="connexion")
     {
-        if(isset($_GET['action']))
-        {
-            //renvois un formulaire d'enregistrement
-            if($_GET['action'] == 'enregistrement')
-            {
-                registerationPage();
-            }
-            //renvoi un formulaire d'authentification
-            if($_GET['action'] == 'connexion')
-            {
-                connection();
-            }
-            if($_GET['action'] == 'profile')
-            {
-                
-            }
-        }
-        else if(isset($_GET['profile']) AND $_GET['profile']>0)
-        {
-            $getID = intval($_GET['profile']);
-            profile();
-        }
-        else if (isset($_GET['disconnection']))
-        {
-            disconnect();
-        }
-        else
-            accueil();
+        connexion();
     }
-    catch (Exception $e)
+    elseif($url[1]=="enregistrement")
     {
-        echo '<html><body>Erreur ! ' . $e->getMessage() . '</body></html>';
+        registerationPage();
     }
+    elseif($url[1]=="deconnexion"){
+        disconnect();
+    }
+}
+
+//gestion de la partie Profil
+elseif($url[0]=="profile"){
+    if($url[1]==$_SESSION['name']){
+        profile();
+    }
+}

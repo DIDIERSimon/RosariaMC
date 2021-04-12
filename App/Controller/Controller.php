@@ -20,7 +20,7 @@ function registeringAccount($name, $email, $password)
 //fin region d'enregistrement
 
 //region de connexion
-function connection()
+function connexion()
 {
     require 'View/Authentification/connection.php';
 }

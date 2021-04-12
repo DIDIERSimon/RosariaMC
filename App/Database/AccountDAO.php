@@ -15,7 +15,7 @@ class AccountDAO{
         {
             $sql = "INSERT INTO account(accountName, accountEmail, accountPassword, accountCreateAt) VALUES (?, ?, ?, ?)";
             $bdd = Connexion::executerRequete($sql, array($name, $email, $password, date("d-m-Y H:i:s")));
-            header("Location: index.php?action=connexion");
+            header("Location: /auth/connexion");
         }
         
     }
@@ -31,7 +31,7 @@ class AccountDAO{
             $_SESSION['id'] =  $info['accountID'];
             $_SESSION['name'] =  $info['accountName'];
             $_SESSION['email'] =  $info['accountEmail'];
-            header("Location: index.php");
+            header("Location: /");
         }
         else
             throw new Exception("Connexion impossible, compte inexistant ou mauvaises informations. <a href='index.php?action=connection'>Retour a la connexion</a>");
