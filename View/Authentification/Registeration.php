@@ -44,6 +44,7 @@ if(isset($_POST['submit']))
         <div class="login-wrapper">
             <form method="POST" class="form">
                 <h2>S'enregistrer</h2>
+                <p>Vous devez vous être au moins connecté au serveur une  fois pour vous enregistrer</p><br><br>
                 <div class="input-group">
                     <input type="text" name="accName" >
                     <label for="accName">Pseudo In-Game</label>

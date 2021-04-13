@@ -1,6 +1,6 @@
 <?php
 
-require_once 'App/Models/Account.php';
+require_once 'App/Métier/Account.php';
 require_once 'App/Database/Connexion.php';
 static $status;
 
@@ -22,7 +22,6 @@ class AccountDAO{
 
     public static function connexion($email, $password)
     {
-        session_start();
         $sql = "SELECT accountID, accountName, accountEmail, accountPassword FROM account WHERE accountEmail = ? AND accountPassword = ?";
         $bdd = Connexion::executerRequete($sql, array($email, $password));
         if($bdd->rowCount() == 1)
@@ -34,9 +33,7 @@ class AccountDAO{
             header("Location: /");
         }
         else
-            throw new Exception("Connexion impossible, compte inexistant ou mauvaises informations. <a href='index.php?action=connection'>Retour a la connexion</a>");
+            header("Location: /auth/erreur_login");
     }
-
-    
 
 }

@@ -8,17 +8,19 @@
 }
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
-body{
+.site{
     background: url('/Resources/img/img.png') fixed;
     background-size: cover;
 }
 
+
 .sidebar {
   position: fixed;
-  width: 200px;
+  width: 250px;
   height: 100%;
   background: #042331;
   transition: all .5s ease;
+  z-index: 999;
 }
 .sidebar header {
   font-size: 22px;

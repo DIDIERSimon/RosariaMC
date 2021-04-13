@@ -34,12 +34,17 @@ create table IF NOT EXISTS account(
     `accountPassword` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `accountCreateAt` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `accountPB` INT(11) DEFAULT 0,
+    fireign key (`accountID`) REFERENCES players(`PlayerName`),
     foreign key (`accountRole`) REFERENCES roles(`RoleID`),
     primary key (`accountID`)
 );
 
 
 /* Insertion de données */
+
+/*Insertion joueurs (vrai)*/
+insert into players values ('Ekyazed', '9236c894-dbc6-4b63-9dcf-695d0a15a7f6', 0.00, 10);
+insert into players values ('NiKla0Ss', 'e73c0d0c-c610-4b28-856b-0a09f987e6d3', 0.00, 10);
 
 /*Liste Roles*/
 insert into roles (RoleLibelle) values ('Joueur');

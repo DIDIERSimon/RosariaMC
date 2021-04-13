@@ -1,7 +1,7 @@
 <?php
 
-require_once 'Connexion.php';
-require_once 'App/Models/Players.php';
+require_once 'App/Database/Connexion.php';
+require_once 'App/Métier/Players.php';
 
 class PlayersDAO{
 

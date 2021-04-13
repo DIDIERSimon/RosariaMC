@@ -1,7 +1,7 @@
 <?php
 
-require_once 'App/Database/PlayersDAO.php';
-require_once 'App/Database/AccountDAO.php';
+require_once 'App/Database/Models/AccountDAO.php';
+require_once 'App/Database/Models/PlayersDAO.php';
 
 function accueil()
 {
@@ -41,9 +41,33 @@ function profile($pID)
     $bdd = Connexion::executerRequete($sql, array($pID));
     $infoUser = $bdd->fetch();
     require 'View/Main/profil.php';
+    return $infoUser;
 }
 
 function disconnect()
 {
     require 'View/Authentification/deconnexion.php';
+}
+
+
+//Admin Section
+function AdminHome($id)
+{
+    $sql = "SELECT a.accountID, a.accountName, a.accountEmail, a.accountRole, a.accountCreateAt, a.accountPB, r.RoleLibelle
+        from account a
+        join roles r
+        on a.accountRole = r.RoleID
+        where accountName = ?";
+    $bdd = Connexion::executerRequete($sql, array($id));
+    $infoUser = $bdd->fetch();
+    require 'View/Admin/Panel_home.php';
+}
+
+function erreur_login()
+{
+    require 'View/utils/error_login.html';
+}
+
+function erreur_404(){
+    require 'View/utils/404.html';
 }

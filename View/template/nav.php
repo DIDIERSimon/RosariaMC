@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/Resources/css/general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   </head>
-  <body>
+  <body class="site">
     <div class="sidebar">
     <header>RosariaMC</header>
       <ul>
@@ -44,7 +44,7 @@
             }
             else{
               ?>
-              <li><a href="#"><i class="fas fa-columns"></i>Panel Admin</a></li>
+              <li><a href="/admin/home"><i class="fas fa-columns"></i>Panel Admin</a></li>
               <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
               <li><a href="/auth/deconnexion"><i class="fas fa-user"></i>Déconnexion</a></li>
               <?php
