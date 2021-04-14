@@ -1,6 +1,6 @@
 <?php
-session_start();
-ini_set('display_errors', 'off');
+//ini_set('display_errors', 'off');
+if(session_status() !== PHP_SESSION_ACTIVE) session_start();
     require 'App/Controller/Controller.php';
 
 $url = '';
@@ -8,47 +8,15 @@ if(isset($_GET['url'])){
     $url = explode('/', $_GET['url']);
 }
 
-if($url == "")
-{
+if($url==""){
     accueil();
 }
 
-//gestion de la partie Authentification
-elseif($url[0]=="auth")
-{
-    if($url[1]=="connexion")
+if(session_status() !== PHP_SESSION_ACTIVE){       //on vérifie si le client est authentifier
+    if($url[0]=="profile" && $url[1]==$_GET[$url[1]])
     {
-        connexion();
-    }
-    elseif($url[1]=="enregistrement")
-    {
-        registerationPage();
-    }
-    elseif($url[1]=="deconnexion"){
-        disconnect();
-    }
-    //Auth Erreurs
-    elseif($url[1]=="erreur_login"){
-        erreur_login();
+        profile($url[1]);
     }
 }
-
-//gestion de la partie Profil
-elseif($url[0]=="profile"){
-    if($url[1]==$_SESSION['name']){
-        profile($_SESSION['name']);
-    }
-    elseif($url[1]==''){
-        erreur_404();
-    }
-}
-
-
-//Admin panel
-elseif($url[0]=="admin"){
-    if($url[1]=="home"){
-        AdminHome($_SESSION['id']);
-    }
-}
-
-
+else                                               //Si le client n'est pas authentifier, il est rediriger automatiquement vers la page d'accueil
+    accueil();

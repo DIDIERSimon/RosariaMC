@@ -36,4 +36,5 @@ class Account{
     public function setAccountCreatedAt($accCreatedAt){$this->accCreatedAt = $accCreatedAt;}
     public function setAccountPassword($accPassword){$this->accPassword = $accPassword;}
     public function setAccountPB($accPB){$this->accPB = $accPB;}
+
 }

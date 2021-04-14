@@ -17,6 +17,12 @@ create table IF NOT EXISTS grades(
     primary key (`GradeID`)
 );
 
+create table IF NOT EXISTS forum_categorie(
+    `categorieID` INT(11) AUTO_INCREMENT,
+    `categorieLibelle` VARCHAR(255) COLLATE utf8_unicode_ci not null,
+    primary key (`categorieID`)
+);
+
 create table IF NOT EXISTS players(
     `PlayerName` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `PlayerUUID` VARCHAR(255) COLLATE utf8_unicode_ci not null,
@@ -34,9 +40,20 @@ create table IF NOT EXISTS account(
     `accountPassword` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `accountCreateAt` VARCHAR(255) COLLATE utf8_unicode_ci not null,
     `accountPB` INT(11) DEFAULT 0,
-    fireign key (`accountID`) REFERENCES players(`PlayerName`),
+    foreign key (`accountName`) REFERENCES players(`PlayerName`),
     foreign key (`accountRole`) REFERENCES roles(`RoleID`),
     primary key (`accountID`)
+);
+
+create table IF NOT EXISTS forum(
+    `forumTopicID` INT(11) AUTO_INCREMENT,
+    `forumTopicName` VARCHAR(255) COLLATE utf8_unicode_ci not null,
+    `forumTopicContent` TEXT COLLATE utf8_unicode_ci not null,
+    `forumTopicAuthor` VARCHAR(255) COLLATE utf8_unicode_ci not null,
+    `forumCategorie` VARCHAR(255) COLLATE utf8_unicode_ci not null,
+    foreign key (`forumTopicAuthor`) REFERENCES account(`accountName`),
+    foreign key (`forumCategorie`) REFERENCES forum_categorie(`categorieID`),
+    primary key (`forumTopicID`)
 );
 
 
@@ -67,3 +84,9 @@ insert into grades (GradeLibelle) VALUES ('Modérateur');
 insert into grades (GradeLibelle) VALUES ('Responsable');
 insert into grades (GradeLibelle) VALUES ('Administrateur');
 insert into grades (GradeLibelle) VALUES ('Gérant');
+
+/*Liste Catégorie*/
+insert into forum_categorie (categorieLibelle) VALUES ('Recrutement_Staff');
+insert into forum_categorie (categorieLibelle) VALUES ('Plaintes');
+insert into forum_categorie (categorieLibelle) VALUES ('Sondage');
+insert into forum_categorie (categorieLibelle) VALUES ("Demande_d'aide");
