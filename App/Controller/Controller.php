@@ -81,7 +81,7 @@ function register()
     require 'View/Auth/Registeration.php';
 }
 
-//retourne la page d'accueil destiner aux admin 
+//retourne la page d'accueil destiner aux admin
 function admin_home()
 {
     $total_account = AccountDAO::countTAccount();

@@ -32,9 +32,6 @@ elseif($url[0]=="auth")
 }                      
 
 
-//Fin région Authentification
-
-
 /**
  * Gestion de la partie Administration
  */
