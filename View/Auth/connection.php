@@ -1,19 +1,6 @@
 <?php
 
-    if(isset($_POST['connexion']))
-    {
-        $email = htmlspecialchars(trim($_POST['accEmail']));
-        $password = htmlspecialchars(trim($_POST['accPassword']));
-
-        if(filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
-            $crypt = sha1($password);
-            connRequest($email, $crypt);
-        }
-        else
-            $erreur = 'Veuillez entrer une adresse Email valide';
-        
-    }
+    
 
 ?>
 <!DOCTYPE html>

@@ -1,3 +1,7 @@
+<?php
+    require_once 'App/Metier/Account.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +32,7 @@
             <div>
                 <h2>
                 <?php
-                    $sql = "SELECT COUNT(accountID) as Taccount from account";
-                    $bdd = Connexion::executerRequete($sql);
-                    $total = $bdd->fetch();
-                    echo $total['Taccount'];
+                    echo $total_account['accountT']
                 ?>
                 </h2>
                 <small>Comptes enregistrés</small>
@@ -43,12 +44,7 @@
         <div class="card-single">
             <div>
                 <h2>
-                <?php
-                    $sql2 = "SELECT COUNT(forumTopicID) as TTopic from forum";
-                    $bdd2 = Connexion::executerRequete($sql2);
-                    $Topics = $bdd2->fetch();
-                    echo $Topics['TTopic'];
-                ?>
+                0<!--PHP a intégré à la creation des DAO-->
                 </h2>
                 <small>Topics enregistrés</small>
             </div>
@@ -60,10 +56,7 @@
             <div>
                 <h2>
                 <?php
-                    $sql1 = "SELECT COUNT(playerUUID) as TPlayer from players";
-                    $bdd1 = Connexion::executerRequete($sql1);
-                    $total1 = $bdd1->fetch();
-                    echo $total1['TPlayer'];
+                    echo $total_player['tPlayer'];
                 ?>
                 </h2>
                 <small>Joueurs enregistrés</small>
@@ -74,7 +67,9 @@
         </div>
         <div class="card-single">
             <div>
-                <h2>0</h2>
+                <h2>
+                0<!--PHP a intégré à la creation des DAO-->
+                </h2>
                 <small>commandes enregistrés</small>
             </div>
             <div> 
@@ -102,19 +97,19 @@
                 <td>Date de creation</td>
                 <td>interraction</td>
             </thead>
-            <?php
-                foreach($infoUser as $Account)
+          <?php
+                foreach($lesComptes as $account)
                 {?>
 
                     <tr>
-                        <td><?php echo $Account->getAccountName ?></td>
-                        <td><?php echo $Account['RoleLibelle'] ?></td>
-                        <td><?php echo $Account['accountCreateAt'] ?></td>
+                        <td><?php echo $account->getAccountName(); ?></td>
+                        <td><?php echo $account->getAccountRole(); ?></td>
+                        <td><?php echo $account->getAccountCreatedAt(); ?></td>
                         <td>test</td>
                     </tr>
                 
                 <?php }
-            ?> 
+            ?>
         </table>
     </div>
 </main>

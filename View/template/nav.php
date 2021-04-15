@@ -19,7 +19,6 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>RosariaMC | Accueil</title>
     <link rel="stylesheet" href="/Resources/css/general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   </head>
@@ -39,21 +38,21 @@
               ?>
                             
                 <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
-                <li><a href="/auth/deconnexion"><i class="fas fa-user"></i>Déconnexion</a></li>
+                <li><a href="/auth/logout"><i class="fas fa-user"></i>Déconnexion</a></li>
               <?php
             }
             else{
               ?>
               <li><a href="/admin/home"><i class="fas fa-columns"></i>Panel Admin</a></li>
               <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
-              <li><a href="/auth/deconnexion"><i class="fas fa-user"></i>Déconnexion</a></li>
+              <li><a href="/auth/logout"><i class="fas fa-user"></i>Déconnexion</a></li>
               <?php
             }
         
           }
           else{
             ?>
-            <li><a href="/auth/connexion"><i class="fas fa-user"></i>Connexion</a></li>
+            <li><a href="/auth/login"><i class="fas fa-user"></i>Connexion</a></li>
             <?php
           }
         ?>
