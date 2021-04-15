@@ -22,8 +22,7 @@ class AccountDAO{
             header('Location: /');
         }
         else
-            $erreur = "Impossible de vous connecter. Avez vous enregistrer les bonnes informations ?";
-            return $erreur;
+            throw new Exception ("Impossible de vous connecter. Avez vous enregistrer les bonnes informations ?");
     }
 
     public static function setAccount($user, $email, $password)
@@ -34,7 +33,7 @@ class AccountDAO{
         {
             $sql = "INSERT INTO account(accountName, accountEmail, accountPassword, accountCreateAt) VALUES (?, ?, ?, ?)";
             $bdd = Connexion::executerRequete($sql, array($user, $email, $password, date("d/m/Y à H:i")));
-            header("Location: /auth/connexion");
+            header("Location: /auth/login");
         }
     }
 
@@ -49,7 +48,8 @@ class AccountDAO{
     public static function getAllAccount()
     {
         $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB
-                FROM account";
+                FROM account
+                ORDER BY accountID DESC";
         $bdd = Connexion::executerRequete($sql);
         $lesComptes=array();
         foreach($bdd as $account)
@@ -62,10 +62,24 @@ class AccountDAO{
             return $lesComptes;
         }
         else
-            $error = "Impossible de récupérer les comptes";
-            return $error;
+            throw new Exception("Impossible de récupérer les comptes");
         
     }
+
+    public static function getAccountByName($name)
+    {
+        $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB
+                FROM account
+                WHERE accountName = ?";
+        $result = Connexion::executerRequete($sql, array($name));
+        if($result->rowCount() == 1)
+        {
+            $compte = $result->fetch();
+            $leCompte = self::createAccount($compte);
+            return $leCompte;
+        }
+    }
+
     private static function createAccount($pAcc)
     {
         $account = new Account($pAcc['accountID'], $pAcc['accountName'], $pAcc['accountEmail'], $pAcc['accountRole'], $pAcc['accountCreateAt'], $pAcc['accountPassword'], $pAcc['accountPB']);

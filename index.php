@@ -7,7 +7,8 @@ $url = '';
 if(isset($_GET['url'])){
     $url = explode('/', $_GET['url']);
 }
-if($url==""){
+if($url=="")
+{
     accueil();                                                  //Renvoi l'utilisateur a l'accueil
 }
 
@@ -19,7 +20,7 @@ elseif($url[0]=="auth")
 {
     if($url[1]=="login")                                        //Connexion du compte
     {
-            Login();                                            
+        Login();                                            
     }
     elseif($url[1]=="logout")                                   //Déconnexion du compte
     {   
@@ -44,3 +45,29 @@ elseif($url[0]=="admin")
     
 }
 
+/**
+ * Gestion route Profil
+ */
+elseif($url[0]=="profil")
+{
+    if(!empty($url[1]))
+    {
+        $pseudo = $url[1];
+        profil($pseudo);
+    }
+    else
+    {
+        error404();
+    }
+}
+
+/**
+ * Gestion des erreurs
+ */
+elseif($url[0]=="error")
+{
+    if($url[1]=="404")
+    {
+        error404();
+    }
+}

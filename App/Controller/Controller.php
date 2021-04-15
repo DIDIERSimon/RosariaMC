@@ -91,3 +91,10 @@ function admin_home()
     $lesComptes = AccountDAO::getAllAccount();
     require 'View/Admin/Panel_home.php';
 }
+
+function profil($name)
+{
+    $leProfil = PlayerDAO::getProfil($name);
+    $leCompte = AccountDAO::getAccountByName($name);
+    require 'View/Main/profil.php';
+}

@@ -37,14 +37,14 @@
             if($accInfo['accountRole'] < 6){
               ?>
                             
-                <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
+                <li><a href="/profil/<?php echo $_SESSION['name']; ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
                 <li><a href="/auth/logout"><i class="fas fa-user"></i>Déconnexion</a></li>
               <?php
             }
             else{
               ?>
               <li><a href="/admin/home"><i class="fas fa-columns"></i>Panel Admin</a></li>
-              <li><a href="/profile/<?php echo $accInfo['accountName'] ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
+              <li><a href="/profil/<?php echo $_SESSION['name']; ?>"><i class="fas fa-user"></i><?php echo $_SESSION['name'] ?></a></li>
               <li><a href="/auth/logout"><i class="fas fa-user"></i>Déconnexion</a></li>
               <?php
             }
