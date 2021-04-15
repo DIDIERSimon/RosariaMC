@@ -21,6 +21,9 @@ class AccountDAO{
             $_SESSION['email'] = $result['accountEmail'];
             header('Location: /');
         }
+        else
+            $erreur = "Impossible de vous connecter. Avez vous enregistrer les bonnes informations ?";
+            return $erreur;
     }
 
     public static function setAccount($user, $email, $password)

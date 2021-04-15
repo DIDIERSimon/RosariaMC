@@ -91,12 +91,13 @@
 
     <div class="last-register">
     <table>
-            <thead>
-                <td>Pseudo</td>
-                <td>Rôle</td>
-                <td>Date de creation</td>
-                <td>interraction</td>
-            </thead>
+        <caption>Liste des derniers comptes créer</caption>
+        <thead>
+            <td><strong>Pseudo</strong></td>
+            <td><strong>Rôle</strong></td>
+            <td><strong>Date de creation</strong></td>
+            <td><strong>interraction</strong></td>
+        </thead>
           <?php
                 foreach($lesComptes as $account)
                 {?>

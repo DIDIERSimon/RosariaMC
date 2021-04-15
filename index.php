@@ -38,21 +38,12 @@ elseif($url[0]=="auth")
 /**
  * Gestion de la partie Administration
  */
-elseif($url[0]=="admin" && $url[1]=="home")
+elseif($url[0]=="admin")
 {
-    admin_home();
-}
-
-
-
-
-/*
-elseif(session_status() === PHP_SESSION_ACTIVE)                 //on vérifie si le client est authentifier
-{       
-    if($url[0]=="profile" && $url[1]==$_GET[$url[1]])
+    if($url[1]=="home")
     {
-        profile($url[1]);
+        admin_home();
     }
+    
 }
-else                                                            //Si le client n'est pas authentifier, il est rediriger automatiquement vers la page d'accueil
-    accueil();*/
+

@@ -30,7 +30,7 @@
                     <label for="c_accPassword">Confirmez mot de passe</label>
                 </div>
                 <input type="submit" value="Inscription" name="submit" class="submit-btn">
-                <a href="/auth/connexion" class="forgot-pw">Déjà un compte ?</a><br><br>
+                <a href="/auth/login" class="forgot-pw">Déjà un compte ?</a><br><br>
                 <?php
                 if(isset($erreur)){
                     echo "<p style='color: red;'>".$erreur."</p>";

@@ -1,7 +1,5 @@
 <?php
 
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +23,7 @@
                 <label for="accPassword">Mot de passe</label>
             </div>
             <input type="submit" value="Connexion" name="connexion" class="submit-btn">
-            <a href="enregistrement" class="forgot-pw">Pas de compte ?</a>
+            <a href="register" class="forgot-pw">Pas de compte ?</a>
             <?php
                 if(isset($erreur)){
                     echo "<p style='color: red;'>".$erreur."</p>";

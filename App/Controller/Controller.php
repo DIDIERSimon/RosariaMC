@@ -40,13 +40,13 @@ function login()
     require 'View/Auth/connection.php';
 }
 
-
 //Permet la déconnexion de l'utilisateur
 function logout()
 {
     require 'View/Auth/deconnexion.php';
 }
 
+//Permet d'enregistrer la création d'un compte
 function register()
 {
     if(isset($_POST['submit']))
@@ -81,6 +81,7 @@ function register()
     require 'View/Auth/Registeration.php';
 }
 
+//retourne la page d'accueil destiner aux admin 
 function admin_home()
 {
     $total_account = AccountDAO::countTAccount();
