@@ -30,6 +30,8 @@ elseif($url[0]=="auth")
     {
         register();
     }
+    else
+        error404();
 }                      
 
 
@@ -42,6 +44,8 @@ elseif($url[0]=="admin")
     {
         admin_home();
     }
+    else
+        error404();
     
 }
 
@@ -71,3 +75,7 @@ elseif($url[0]=="error")
         error404();
     }
 }
+
+
+else
+    error404();
