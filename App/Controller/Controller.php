@@ -92,6 +92,7 @@ function admin_home()
     require 'View/Admin/Panel_home.php';
 }
 
+//Retourne la page d'accueil et récupère les information du joueur (SQL: Player) ainsi que des information du compte (SQL : Account)
 function profil($name)
 {
     $leProfil = PlayerDAO::getProfil($name);

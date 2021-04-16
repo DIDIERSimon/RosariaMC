@@ -5,6 +5,12 @@ require_once 'App/Database/Connexion.php';
 
 class AccountDAO{
 
+    /**Permet d'effectuer la connexion d'un compte sur le site
+     *Récupère les information nécessaire à la connexion et a l'initialisation de la session
+     *Si les valeurs renseigné sont correct, l'utilisateur se connecte à sa session et génère les variables de session ($_SESSION)
+     *Si la validation est un succès, alors le joueur se retrouve connecter et rediriger vers la page d'acceuil
+     *Si la validation est un échec, alors on lui renvoi vers une page d'erreur disans que le login est faux.
+     */
     public static function setLogin($user, $password)
     {
         $sql = "SELECT accountID, accountName, accountEmail, accountPassword
@@ -21,15 +27,21 @@ class AccountDAO{
             $_SESSION['email'] = $result['accountEmail'];
             header('Location: /');
         }
-        else
-            throw new Exception ("Impossible de vous connecter. Avez vous enregistrer les bonnes informations ?");
+        //Ajouter une page d'erreur
+            
     }
 
+    /**Permet de créer un compte.
+     * Récupère les information founis par le fomulaire.
+     * Si les informations founis n'appartienne à aucun compte, alors la création du compte est enclancher.
+     * Les informations sont rentrés dans la base de donnée avec,en plus des informations, la date de la création du compte.
+     * Une fois l'enregistrement validé, l'utilisateur est renvoyer vers la page de connexion.
+     */
     public static function setAccount($user, $email, $password)
     {
-        $sql = "SELECT accountName FROM account where accountName = ?";
-        $bdd = Connexion::executerRequete($sql, array($user));
-        if($bdd->rowCount() < 1)
+        $sql = "SELECT accountName, accountEmail FROM account where accountName = ? OR accountEmail = ";
+        $bdd = Connexion::executerRequete($sql, array($user, $email));
+        if($bdd->rowCount() == 0)
         {
             $sql = "INSERT INTO account(accountName, accountEmail, accountPassword, accountCreateAt) VALUES (?, ?, ?, ?)";
             $bdd = Connexion::executerRequete($sql, array($user, $email, $password, date("d/m/Y à H:i")));
@@ -37,6 +49,8 @@ class AccountDAO{
         }
     }
 
+    
+    //Permet de compter le nombre de compte renseigné sur la base de donnée
     public static function countTAccount()
     {
         $sql = "SELECT COUNT(accountID) as accountT from account";
@@ -45,6 +59,7 @@ class AccountDAO{
         return $tAccount;
     }
 
+    //Permet la récupération de tous les comptes.
     public static function getAllAccount()
     {
         $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB
@@ -66,6 +81,7 @@ class AccountDAO{
         
     }
 
+    //Permet la récupération d'un compte spécifique par le pseudo renseigné dans l'url.
     public static function getAccountByName($name)
     {
         $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB
@@ -80,6 +96,7 @@ class AccountDAO{
         }
     }
 
+    //Permet de créer un compte en format Objet (POO)
     private static function createAccount($pAcc)
     {
         $account = new Account($pAcc['accountID'], $pAcc['accountName'], $pAcc['accountEmail'], $pAcc['accountRole'], $pAcc['accountCreateAt'], $pAcc['accountPassword'], $pAcc['accountPB']);

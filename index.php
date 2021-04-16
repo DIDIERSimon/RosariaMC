@@ -40,7 +40,7 @@ elseif($url[0]=="auth")
  */
 elseif($url[0]=="admin")
 {
-    if($url[1]=="home")
+    if($url[1]=="home")                                         //Envoi à la page "Dashboard" du panel d'administration
     {
         admin_home();
     }
@@ -54,7 +54,7 @@ elseif($url[0]=="admin")
  */
 elseif($url[0]=="profil")
 {
-    if(!empty($url[1]))
+    if(!empty($url[1]))                                         //Envoi vers la page de profil du joueur renseigner dans l'url
     {
         $pseudo = $url[1];
         profil($pseudo);
@@ -68,8 +68,8 @@ elseif($url[0]=="profil")
 /**
  * Gestion des erreurs
  */
-elseif($url[0]=="error")
-{
+elseif($url[0]=="error")                                        //Chemin pour que les DAO puisse renvoyer la page d'erreur sans passé par un include
+{                                                               //qui laissera afficher la page précédente.
     if($url[1]=="404")
     {
         error404();
@@ -78,4 +78,4 @@ elseif($url[0]=="error")
 
 
 else
-    error404();
+    error404();                                                 //Retourne un page d'erreur si l'une des conditions renseigné plus haut n'est pas valide.
