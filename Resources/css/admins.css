@@ -1,0 +1,169 @@
+
+main{
+    margin-left: 250px;
+    padding: 2rem 1.5rem;
+    background: #f1f5f9;
+    min-height: calc(100vh);
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+}
+
+.card-single{
+    display: flex;
+    justify-content: space-between;
+    background: #e1b12c;
+    padding: 2rem;
+    border-radius: 2px;
+}
+
+.card-single div span{
+    font-size: 3rem;
+}
+
+.grid2
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20%;
+}
+
+.grid2 .content-table
+{
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 400px;
+    margin: 25px 10%;
+}
+
+.grid2 .content-table thead tr 
+{
+    background-color: #009879;
+    text-align: left;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.grid2 .content-table th,
+.grid2 .content-table tr
+{
+    padding: 12px 15px;
+}
+
+.grid2 .content-table tbody tr
+{
+    border-bottom: 1px solid #dddddd;
+    font-size: 15px;
+}
+
+.add .btn
+{
+    position: absolute;
+    top: 35%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    background: none;
+    color: #ccc;
+    width: 10%;
+    height: 70px;
+    border: 1px solid #338033;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+.update .btn
+{
+    position: absolute;
+    top: 45%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    background: none;
+    color: #ccc;
+    width: 10%;
+    height: 70px;
+    border: 1px solid #338033;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+.remove .btn
+{
+    position: absolute;
+    top: 55%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    background: none;
+    color: #ccc;
+    width: 10%;
+    height: 70px;
+    border: 1px solid #338033;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+
+a .btn
+{
+    color: #338033;
+}
+
+.btn:focus
+{
+    outline: none;
+}
+
+.btn::before
+{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, .5);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5s;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+.btn::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+}
+
+.btn:hover
+{
+    background: #338033;
+    cursor: pointer;
+}
+.btn:hover::before
+{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 0.6;
+    transition: .7s;
+}
+
+.btn:hover::after
+{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}

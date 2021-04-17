@@ -44,6 +44,17 @@ elseif($url[0]=="admin")
     {
         admin_home();
     }
+    elseif($url[1]=="shopManagement")
+    {
+        if(empty($url[2]))
+        {
+            shopManagement();
+        }
+        elseif($url[2]=="add")
+        {
+            addProduct();
+        }
+    }
     else
         error404();
     
@@ -62,6 +73,21 @@ elseif($url[0]=="profil")
     else
     {
         error404();
+    }
+}
+
+elseif($url[0]=="shop")
+{
+    if($url[1]=="home")
+    {
+        shop();
+    }
+    elseif($url[1]=="item")
+    {
+        if(!empty($url[2])){
+            $id = $url[2];
+            shopdesc($id);
+        }
     }
 }
 

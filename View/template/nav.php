@@ -26,11 +26,11 @@
     <div class="sidebar">
     <header>RosariaMC</header>
       <ul>
-        <li><a href="index.php"><i class="fas fa-home"></i>Accueil</a></li>
+        <li><a href="/"><i class="fas fa-home"></i>Accueil</a></li>
         <li><a href="#"><i class="fas fa-newspaper"></i>Actualités</a></li>
         <li><a href="#"><i class="fas fa-comments"></i>Forum</a></li>
         <li><a href="#"><i class="fas fa-calendar-week"></i>Evévements</a></li>
-        <li><a href="#"><i class="fas fa-shopping-bag"></i>Boutique</a></li>
+        <li><a href="/shop/home"><i class="fas fa-shopping-bag"></i>Boutique</a></li>
         <li><a href="#"><i class="fas fa-users"></i>Equipe</a></li>
         <?php 
           if(isset($_SESSION['id']) AND $_SESSION['id'] == $accInfo['accountID']){

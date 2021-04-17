@@ -1,0 +1,143 @@
+*{
+    text-decoration: none;
+}
+
+.main
+{
+    margin-left: 250px;
+    padding: 2rem 3rem;
+    min-height: calc(100vh);
+}
+
+.main .shop-grid
+{
+    margin-top: 150px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+}
+
+.main .shop-grid .card
+{
+    position: relative;
+    height: 500px;
+    width: 320px;
+    background: #042331;
+}
+
+.main .shop-grid .card .head
+{
+    position: absolute;
+    top: 0;
+    height: 80%;
+    width: 100%;
+    
+}
+
+.main .shop-grid .card .head .title
+{
+    position: absolute;
+    margin-top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: white;
+}
+
+.main .shop-grid .card .head img
+{
+    position: absolute;
+    margin-top: 60px;
+    height: 250px;
+    width: 250px;
+    display: block;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main .shop-grid .card .choise
+{
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+    width: 100%;
+}
+
+.main .shop-grid .card .choise button
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    color: #ccc;
+    width: 60%;
+    height: 70px;
+    border: 1px solid #338033;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+
+.main .shop-grid .card .choise button a
+{
+    color: white;
+}
+
+.main .shop-grid .card .choise button:focus
+{
+    outline: none;
+}
+
+.main .shop-grid .card .choise button::before
+{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, .5);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5s;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+.main .shop-grid .card .choise button::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+}
+
+.main .shop-grid .card .choise button:hover
+{
+    background: #338033;
+    cursor: pointer;
+}
+.main .shop-grid .card .choise button:hover::before
+{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 0.6;
+    transition: .7s;
+}
+
+.main .shop-grid .card .choise button:hover::after
+{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}

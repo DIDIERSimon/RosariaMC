@@ -27,7 +27,9 @@ class AccountDAO{
             $_SESSION['email'] = $result['accountEmail'];
             header('Location: /');
         }
-        //Ajouter une page d'erreur
+        else
+            $erreur = "Impossible d'effectuer la connexion. Merci de vérifier vos informations";
+            return $erreur;
             
     }
 
@@ -39,7 +41,8 @@ class AccountDAO{
      */
     public static function setAccount($user, $email, $password)
     {
-        $sql = "SELECT accountName, accountEmail FROM account where accountName = ? OR accountEmail = ";
+        date_default_timezone_set('Europe/Paris');
+        $sql = "SELECT accountName, accountEmail FROM account where accountName = ? OR accountEmail = ?";
         $bdd = Connexion::executerRequete($sql, array($user, $email));
         if($bdd->rowCount() == 0)
         {
@@ -47,6 +50,9 @@ class AccountDAO{
             $bdd = Connexion::executerRequete($sql, array($user, $email, $password, date("d/m/Y à H:i")));
             header("Location: /auth/login");
         }
+        else
+            $erreur = "l'une des informations que vous nous avez fournis son indisponible.";
+            return $erreur;
     }
 
     
@@ -62,9 +68,9 @@ class AccountDAO{
     //Permet la récupération de tous les comptes.
     public static function getAllAccount()
     {
-        $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB
-                FROM account
-                ORDER BY accountID DESC";
+        $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB, rolelibelle
+                FROM account JOIN roles on account.accountRole = roles.roleID
+                ORDER BY accountID DESC LIMIT 10";
         $bdd = Connexion::executerRequete($sql);
         $lesComptes=array();
         foreach($bdd as $account)
@@ -76,16 +82,14 @@ class AccountDAO{
         {
             return $lesComptes;
         }
-        else
-            throw new Exception("Impossible de récupérer les comptes");
-        
+        //Ajouter une page d'erreur spé avec un msg d'erreur    
     }
 
     //Permet la récupération d'un compte spécifique par le pseudo renseigné dans l'url.
     public static function getAccountByName($name)
     {
-        $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB
-                FROM account
+        $sql = "SELECT accountID, accountName, accountEmail, accountRole, accountPassword, accountCreateAt, accountPB, roleLibelle
+                FROM account JOIN roles on account.accountRole = roles.roleID
                 WHERE accountName = ?";
         $result = Connexion::executerRequete($sql, array($name));
         if($result->rowCount() == 1)
@@ -94,12 +98,13 @@ class AccountDAO{
             $leCompte = self::createAccount($compte);
             return $leCompte;
         }
+        //Ajouter une page d'erreur spé avec un msg d'erreur
     }
 
     //Permet de créer un compte en format Objet (POO)
     private static function createAccount($pAcc)
     {
-        $account = new Account($pAcc['accountID'], $pAcc['accountName'], $pAcc['accountEmail'], $pAcc['accountRole'], $pAcc['accountCreateAt'], $pAcc['accountPassword'], $pAcc['accountPB']);
+        $account = new Account($pAcc['accountID'], $pAcc['accountName'], $pAcc['accountEmail'], $pAcc['rolelibelle'], $pAcc['accountCreateAt'], $pAcc['accountPassword'], $pAcc['accountPB']);
         return $account;
     }
 

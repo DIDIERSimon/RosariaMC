@@ -2,8 +2,8 @@
 
     require 'App/Database/Models/AccountDAO.php';
     require 'App/Database/Models/PlayerDAO.php';
-    //require 'App/Database/Models/ForumDAO.php;
-    //require 'App/Database/Models/ShopDAO.php;
+    //require 'App/Database/Models/ForumDAO.php';
+    require 'App/Database/Models/ShopDAO.php';
 
 /**
  * Fonction qui retourne la page d'accueil
@@ -31,7 +31,7 @@ function login()
         if(filter_var($email, FILTER_VALIDATE_EMAIL))
         {
             $crypt = sha1($password);
-            AccountDAO::setLogin($email, $crypt);
+            $erreur = AccountDAO::setLogin($email, $crypt);
         }
         else
             $erreur = 'Veuillez entrer une adresse Email valide';
@@ -64,7 +64,7 @@ function register()
                     if($password == $c_password)
                     {
                         $password = sha1($password);
-                        AccountDAO::setAccount($pseudo, $email, $password);
+                        $erreur = AccountDAO::setAccount($pseudo, $email, $password);
                     }
                     else
                         $erreur = 'Vos deux mots de passe ne sont pas identiques';
@@ -98,4 +98,39 @@ function profil($name)
     $leProfil = PlayerDAO::getProfil($name);
     $leCompte = AccountDAO::getAccountByName($name);
     require 'View/Main/profil.php';
+}
+
+function shop()
+{
+    $products = ShopDAO::getProducts();
+    require 'View/Boutique/shopItems.php';
+}
+
+function shopdesc($id)
+{
+    $unProduit = ShopDAO::getProductByID($id);
+    require 'View/Boutique/ShopItem.php';
+}
+
+function shopManagement()
+{
+    $lProduit = ShopDAO::getProducts();
+    require 'View/Admin/GestionBoutique.php';
+}
+
+function addProduct()
+{
+    if(isset($_POST['addProduct']))
+    {
+        $name = htmlspecialchars(trim($_POST['productName']));
+        $type = htmlspecialchars(trim($_POST['productType']));
+        $price = htmlspecialchars(trim($_POST['productPrice']));
+        if(!empty($name) && !empty($type) && !empty($price))
+        {
+            ShopDAO::addProduct($name, $type, $price);
+        }
+        else
+            $erreur = "Veuillez remplir tout les champs";
+    }
+    require 'View/Admin/AddShopItem.php';
 }
